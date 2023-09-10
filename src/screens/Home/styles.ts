@@ -37,6 +37,7 @@ export const styles = StyleSheet.create({
     marginRight: 4,
 
     borderRadius: 8,
+    color: theme.colors.gray100
   },
 
   button: {

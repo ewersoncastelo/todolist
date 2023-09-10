@@ -5,6 +5,7 @@ import { styles } from './styles';
 
 import imageEmpty from '../../assets/images/empty-logo.png';
 import logoTodo from '../../assets/images/todo-logo.png';
+import { InfoTasks } from '../../components/InfoTasks';
 
 export function Home() {
   return (
@@ -32,26 +33,20 @@ export function Home() {
 
       <View style={styles.subHeader}>
         <View style={styles.subHeaderLeft}>
-          <Text style={styles.tasksCreated}>
-            Criadas
-          </Text>
-
-          <View style={styles.tasksCreatedTotal}>
-            <Text style={styles.tasksCreatedText}>0</Text>
-          </View>
+          <InfoTasks 
+            title='Criadas'
+            total='0'
+            isComplete={false}
+          />
         </View>
 
 
         <View style={styles.subHeaderRight}>
-          <Text style={styles.tasksDone}>
-            Concluídas
-          </Text>
-          
-          <View style={styles.tasksDoneTotal}>
-            <Text style={styles.tasksDoneText}>
-              0
-            </Text>
-          </View>
+          <InfoTasks 
+            title='Concluídas'
+            total='0'
+            isComplete
+          />
         </View>     
       </View> 
       

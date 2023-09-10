@@ -76,31 +76,11 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
   },
 
-  tasksCreated: {
-    color: theme.colors.blue,
-    fontSize: 14,
-
-    fontFamily: theme.fonts.bold,
-  },
-
   tasksDone : {
     color: theme.colors.purple,
     fontSize: 14,
 
     fontFamily: theme.fonts.bold,
-  },
-
-  tasksCreatedTotal : {
-    backgroundColor: theme.colors.gray400,
-    borderRadius: 12,
-
-    width: 29,
-    height: 19,
-
-    alignItems: "center",
-    justifyContent: "center",
-
-    marginLeft: 8
   },
 
   tasksDoneTotal : {
@@ -114,12 +94,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
 
     marginLeft: 8
-  },
-
-  tasksCreatedText: {
-    color: theme.colors.gray200,
-    fontSize: 12,
-    fontFamily: theme.fonts.bold,
   },
 
   tasksDoneText: {

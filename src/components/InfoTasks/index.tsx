@@ -10,7 +10,7 @@ type InfoTasksProps = {
 
 export function InfoTasks({ title, total, isComplete }: InfoTasksProps) {
   return (
-    <>
+    <View style={styles.container}>
       <Text 
         style={[
           styles.taskStageInfo, 
@@ -25,6 +25,6 @@ export function InfoTasks({ title, total, isComplete }: InfoTasksProps) {
           {total}
         </Text>
       </View>
-    </>
+    </View>
   );
 }

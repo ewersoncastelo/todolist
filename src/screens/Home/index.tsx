@@ -32,22 +32,17 @@ export function Home() {
       </View>
 
       <View style={styles.subHeader}>
-        <View style={styles.subHeaderLeft}>
-          <InfoTasks 
-            title='Criadas'
-            total='0'
-            isComplete={false}
-          />
-        </View>
+        <InfoTasks 
+          title='Criadas'
+          total='0'
+          isComplete={false}
+        />
 
-
-        <View style={styles.subHeaderRight}>
-          <InfoTasks 
-            title='Concluídas'
-            total='0'
-            isComplete
-          />
-        </View>     
+        <InfoTasks 
+          title='Concluídas'
+          total='0'
+          isComplete
+        />
       </View> 
       
       <View style={styles.content}>
@@ -56,6 +51,7 @@ export function Home() {
             style={styles.logoEmpty}
             source={imageEmpty} 
           />
+          
           <Text style={styles.textTitleEmpty}>
             Você ainda não tem tarefas cadastradas
           </Text>

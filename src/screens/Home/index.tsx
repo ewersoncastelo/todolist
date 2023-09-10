@@ -5,9 +5,15 @@ import { styles } from './styles';
 
 import imageEmpty from '../../assets/images/empty-logo.png';
 import logoTodo from '../../assets/images/todo-logo.png';
+
 import { InfoTasks } from '../../components/InfoTasks';
+import { Task } from '../../components/Task';
 
 export function Home() {
+  function handleTaskDelete() {
+    console.log("Button deleted tapped...")
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -46,7 +52,20 @@ export function Home() {
       </View> 
       
       <View style={styles.content}>
-        <View style={styles.emptyTodo}>
+
+        <Task 
+          taskComplete={false}
+          toDoText='Integer urna interdum massa libero auctor neque turpis turpis semper.'
+          onDeleteTask={handleTaskDelete}
+        />
+
+        <Task 
+          taskComplete={true}
+          toDoText='Neque turpis turpis semper.'
+          onDeleteTask={handleTaskDelete}
+        />
+
+        {/* <View style={styles.emptyTodo}>
           <Image
             style={styles.logoEmpty}
             source={imageEmpty} 
@@ -59,7 +78,7 @@ export function Home() {
           <Text style={styles.textSubTitleEmpty}>
             Crie tarefas e organize seus itens a fazer
           </Text>
-        </View>
+        </View> */}
       </View>
     </View>
   );  

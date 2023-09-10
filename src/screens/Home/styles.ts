@@ -62,11 +62,7 @@ export const styles = StyleSheet.create({
 
     justifyContent: "space-between",
     marginTop: 32,
-    marginHorizontal: 24,
-
-    borderBottomWidth: 1,
-    borderColor: theme.colors.gray400,
-    borderStyle: "solid"
+    marginHorizontal: 24
   },
 
   subHeaderLeft : {
@@ -107,11 +103,15 @@ export const styles = StyleSheet.create({
     flex: 1,
 
     paddingHorizontal: 24,
-    paddingVertical: 48,
   },
 
   emptyTodo : {
     alignItems: "center",
+    paddingTop: 48,
+
+    borderTopWidth: 1,
+    borderColor: theme.colors.gray400,
+    borderStyle: "solid"
   },
 
   logoEmpty : {

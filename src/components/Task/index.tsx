@@ -8,7 +8,11 @@ type TaskProps = {
   onCompleteTask: () => void;
 }
 
-export function Task({ taskComplete, toDoText, onDeleteTask, onCompleteTask} : TaskProps) {
+export function Task({ 
+  taskComplete, 
+  toDoText, 
+  onDeleteTask, 
+  onCompleteTask} : TaskProps) {
 return (
   <View style={styles.container}>
     <TouchableOpacity 

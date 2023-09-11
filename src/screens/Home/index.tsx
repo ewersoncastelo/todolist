@@ -16,13 +16,10 @@ interface HomeProps {
 }
 
 export function Home() {
-  const [task, setTask] = useState<HomeProps[]>([
-    // {todoItem: "Ir na padaria", complete: 0}, 
-  ]);
+  const [task, setTask] = useState<HomeProps[]>([]);
   const [newTask, setNewTask] = useState<string>("");
   
   function handleTaskAdd(){
-
     // Add new task
     const newTaskItem: HomeProps = {
       todoItem: newTask,
@@ -36,7 +33,7 @@ export function Home() {
         "Você precisa digitar alguma coisa 😁"
       );
 
-    return;
+      return;
     }
 
     // Check if the task has already been added

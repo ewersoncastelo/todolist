@@ -2,21 +2,31 @@ import React, { Text, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
 
 type TaskProps = {
-  taskComplete: boolean;
+  taskComplete: number;
   toDoText: string; 
   onDeleteTask: () => void;
+  onCompleteTask: () => void;
 }
 
-export function Task({ taskComplete, toDoText, onDeleteTask} : TaskProps) {
+export function Task({ taskComplete, toDoText, onDeleteTask, onCompleteTask} : TaskProps) {
 return (
   <View style={styles.container}>
-    <View style={styles.taskComplete}>
+    <TouchableOpacity 
+      onPress={onCompleteTask}
+      style={styles.taskComplete}
+    >
       <Text style={styles.taskCompleteText}>
-        {taskComplete ? "S" : "N"}
+        {(taskComplete == 1) ? "S" : "N"}
       </Text>
-    </View>
+    </TouchableOpacity>
 
-    <Text style={styles.taskToDo}>
+    <Text 
+      style={
+        (taskComplete == 1) ? 
+        styles.taskToDoComplete 
+        : 
+        styles.taskToDo}
+    >
       {toDoText}
     </Text>
 

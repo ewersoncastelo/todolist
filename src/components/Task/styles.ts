@@ -41,6 +41,15 @@ export const styles = StyleSheet.create({
     lineHeight: 20
   },
 
+  taskToDoComplete : {
+    flex: 1,
+    color: theme.colors.gray300,
+    fontSize: 14,
+    lineHeight: 20,
+
+    textDecorationLine: "line-through"
+  },
+
   taskDelete : {
     width: 32,
     height: 32,

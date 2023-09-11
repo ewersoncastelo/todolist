@@ -58,8 +58,19 @@ export function Home() {
   }
 
   function handleTaskDelete(todoItem: string) {
-    console.log("Button deleted tapped...", todoItem)
-    setTask(prevState => prevState.filter(task => task.todoItem !== todoItem));
+    return Alert.alert(
+      "Confirmação de Exclusão",
+      "Tem certeza de que deseja excluir a tarefa selecionada?",
+      [
+        { text: "Sim",
+          onPress: () => {
+            setTask(prevState => prevState.filter(task => task.todoItem !== todoItem));
+            Alert.alert(`A tarefa "${todoItem}" foi excluída.`)
+          }
+        },
+        { text: "Não"},
+      ]
+    )
   }
   
   return (

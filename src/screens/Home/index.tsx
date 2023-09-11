@@ -19,9 +19,8 @@ export function Home() {
   const [task, setTask] = useState<HomeProps[]>([
     // {todoItem: "Ir na padaria", complete: 0}, 
   ]);
-
   const [newTask, setNewTask] = useState<string>("");
-
+  
   function handleTaskAdd(){
 
     // Add new task
@@ -61,8 +60,9 @@ export function Home() {
 
   }
 
-  function handleTaskDelete() {
-    console.log("Button deleted tapped...")
+  function handleTaskDelete(todoItem: string) {
+    console.log("Button deleted tapped...", todoItem)
+    setTask(prevState => prevState.filter(task => task.todoItem !== todoItem));
   }
   
   return (
@@ -114,7 +114,7 @@ export function Home() {
               taskComplete={item.complete}
               toDoText={item.todoItem}
               onCompleteTask={() => console.log("task completed...")}
-              onDeleteTask={handleTaskDelete}
+              onDeleteTask={() => handleTaskDelete(item.todoItem)}
             />
           )}
           showsVerticalScrollIndicator={false}

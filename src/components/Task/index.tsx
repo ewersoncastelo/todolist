@@ -24,15 +24,19 @@ return (
       </Text>
     </TouchableOpacity>
 
-    <Text 
-      style={
-        (taskComplete == 1) ? 
-        styles.taskToDoComplete 
-        : 
-        styles.taskToDo}
+    <TouchableOpacity 
+      style={styles.taskToDoView}
+      onPress={onCompleteTask}
     >
-      {toDoText}
-    </Text>
+      <Text
+        style={
+          (taskComplete == 1) ? 
+          styles.taskToDoComplete 
+          : 
+          styles.taskToDo
+        }
+      >{toDoText}</Text>
+    </TouchableOpacity>
 
     <TouchableOpacity 
       style={styles.taskDelete}

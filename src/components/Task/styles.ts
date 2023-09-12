@@ -34,15 +34,17 @@ export const styles = StyleSheet.create({
     color: theme.colors.blue
   },
 
+  taskToDoView : {
+    flex: 1
+  },
+
   taskToDo : {
-    flex: 1,
     color: theme.colors.gray100,
     fontSize: 14,
     lineHeight: 20
   },
 
   taskToDoComplete : {
-    flex: 1,
     color: theme.colors.gray300,
     fontSize: 14,
     lineHeight: 20,

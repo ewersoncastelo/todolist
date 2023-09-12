@@ -8,7 +8,7 @@ import logoTodo from '../../assets/images/todo-logo.png';
 
 import { InfoTasks } from '../../components/InfoTasks';
 import { Task } from '../../components/Task';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface HomeProps {
   todoItem: string;
@@ -55,6 +55,25 @@ export function Home() {
       "Opa...parece que você já cadastrou essa tarefa ou esqueceu de digitá-la 😁"
     );
 
+  }
+
+  function handleTaksComplete(todoItem: string){
+    const updateTaskCompleted = task.map(item => {
+      if(item.todoItem === todoItem){
+        return {...item, complete: item.complete === 0 ? 1 : 0};
+      }
+      return item;
+    });
+
+    const orderTasks = [...updateTaskCompleted].sort((a, b) => {
+      if (a.complete < b.complete) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+
+    setTask(orderTasks);
   }
 
   function handleTaskDelete(todoItem: string) {
@@ -121,7 +140,7 @@ export function Home() {
             <Task 
               taskComplete={item.complete}
               toDoText={item.todoItem}
-              onCompleteTask={() => console.log("task completed...")}
+              onCompleteTask={() => handleTaksComplete(item.todoItem)}
               onDeleteTask={() => handleTaskDelete(item.todoItem)}
             />
           )}
@@ -143,15 +162,15 @@ export function Home() {
             </View>
           )}
           onEndReached={() => {
-            const sortedTask = [...task].sort((a, b) => {
+            const orderTasks = [...task].sort((a, b) => {
               if (a.complete < b.complete) {
                 return -1;
               } else {
                 return 1;
               }
             });
-
-            setTask(sortedTask);
+          
+            setTask(orderTasks);
           }}
         />
       </View>

@@ -18,6 +18,8 @@ interface HomeProps {
 export function Home() {
   const [task, setTask] = useState<HomeProps[]>([]);
   const [newTask, setNewTask] = useState<string>("");
+  const [totalTaskCreated, setTotalTaskCreated] = useState<number>();
+  const [totalTaskDone, setTotalTaskDone] = useState<number>();
   
   function handleTaskAdd(){
     // Add new task
@@ -44,8 +46,29 @@ export function Home() {
     );
 
     if(!existTask){
-      setTask((prevState) => [...prevState, newTaskItem]);
+      const updatedTaskList = [...task, newTaskItem];
+
+      if(newTaskItem.complete === 0) {
+        setTask(updatedTaskList);
+      }
+
       setNewTask("");
+      handleInfoCreateTask()
+
+      if (newTaskItem.complete === 1){
+        handleInfoNewCompleteTask();
+      }
+
+      // Call the sort function when necessary
+      const orderTasks = updatedTaskList.sort((a, b) => {
+        if (a.complete < b.complete) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+
+      setTask(orderTasks);
 
       return;
     }
@@ -60,8 +83,12 @@ export function Home() {
   function handleTaksComplete(todoItem: string){
     const updateTaskCompleted = task.map(item => {
       if(item.todoItem === todoItem){
-        return {...item, complete: item.complete === 0 ? 1 : 0};
+        return {
+          ...item, 
+          complete: item.complete === 0 ? 1 : 0,
+        };
       }
+
       return item;
     });
 
@@ -74,23 +101,86 @@ export function Home() {
     });
 
     setTask(orderTasks);
+
+    const updatedTask = orderTasks.find(item => item.todoItem === todoItem);
+    if (updatedTask) {
+      if (updatedTask.complete === 1) {
+        handleInfoNewCompleteTask();
+      } else {
+        handleInfoRevertCompleteTask();
+      }
+    }
   }
 
   function handleTaskDelete(todoItem: string) {
+    const taskToDelete = task.find(item => item.todoItem === todoItem);
+
+    // If the task is not found, do nothing
+    if (!taskToDelete) {
+      return; 
+    }
+
     return Alert.alert(
       "Confirmação de Exclusão",
       "Tem certeza de que deseja excluir a tarefa selecionada?",
       [
-        { text: "Sim",
+        {
+          text: "Sim",
           onPress: () => {
             setTask(prevState => prevState.filter(task => task.todoItem !== todoItem));
-            Alert.alert(`A tarefa "${todoItem}" foi excluída.`)
+
+            // Check if the task is complete (1) before decreasing the count
+            if (taskToDelete.complete === 1) {
+              handleInfoDeleteTask();
+              handleInfoRevertCompleteTask();
+            }
+
+            Alert.alert(`A tarefa "${todoItem}" foi excluída.`);
           }
         },
-        { text: "Não"},
+        { text: "Não" },
       ]
-    )
+    );
   }
+
+  function handleInfoTasks() {
+    const totalTaskCreated = task.filter(task => task.todoItem).length
+    setTotalTaskCreated(totalTaskCreated);
+
+    const totalTaskCompleted = task.filter(task => task.complete).length
+    setTotalTaskDone(totalTaskCompleted);
+
+    return;
+  }
+
+  function handleInfoCreateTask() {
+    const totalTaskCreated = task.filter(task => task.todoItem).length + 1
+    return setTotalTaskCreated(totalTaskCreated);
+  }
+
+  function handleInfoDeleteTask() {
+    const totalTaskCreated = task.filter(task => task.todoItem).length - 1
+    return setTotalTaskCreated(totalTaskCreated);
+  }
+
+  function handleInfoNewCompleteTask() {
+    const totalTaskCompleted = task.filter(task => task.complete).length + 1
+    setTotalTaskDone(totalTaskCompleted);
+  }
+
+  function handleInfoRevertCompleteTask(){
+    const totalTaskCompleted = task.filter(task => task.complete).length - 1
+    
+    if (totalTaskCompleted < 0){
+      return;
+    }
+
+    setTotalTaskDone(totalTaskCompleted);
+  }
+
+  useEffect(() => {
+    handleInfoTasks();
+  }, [])
   
   return (
     <View style={styles.container}>
@@ -121,13 +211,13 @@ export function Home() {
       <View style={styles.subHeader}>
         <InfoTasks 
           title='Criadas'
-          total='0'
+          total={`${totalTaskCreated}`}
           isComplete={false}
         />
 
         <InfoTasks 
           title='Concluídas'
-          total='0'
+          total={`${totalTaskDone}`}
           isComplete
         />
       </View> 
@@ -161,17 +251,6 @@ export function Home() {
               </Text>
             </View>
           )}
-          onEndReached={() => {
-            const orderTasks = [...task].sort((a, b) => {
-              if (a.complete < b.complete) {
-                return -1;
-              } else {
-                return 1;
-              }
-            });
-          
-            setTask(orderTasks);
-          }}
         />
       </View>
     </View>

@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import theme from "../../global/theme";
 
 export const styles = StyleSheet.create({
-  container : {
+  container: {
     flexDirection: "row",
     backgroundColor: theme.colors.gray500,
 
@@ -19,48 +19,40 @@ export const styles = StyleSheet.create({
     borderLeftWidth: 1,
     borderRightWidth: 1,
     borderColor: theme.colors.gray400,
-    borderStyle: "solid"
+    borderStyle: "solid",
   },
 
-  taskComplete : {
+  taskComplete: {
     width: 24,
     height: 24,
 
-    justifyContent: "center",
-    alignItems: "center"
+    marginLeft: 12,
   },
 
-  taskCompleteText: {
-    color: theme.colors.blue
+  taskToDoView: {
+    flex: 1,
+    marginVertical: 6,
+
+    marginHorizontal: 8,
   },
 
-  taskToDoView : {
-    flex: 1
-  },
-
-  taskToDo : {
+  taskToDo: {
     color: theme.colors.gray100,
     fontSize: 14,
-    lineHeight: 20
+    lineHeight: 20,
   },
 
-  taskToDoComplete : {
+  taskToDoComplete: {
     color: theme.colors.gray300,
     fontSize: 14,
     lineHeight: 20,
 
-    textDecorationLine: "line-through"
+    textAlign: "justify",
+
+    textDecorationLine: "line-through",
   },
 
-  taskDelete : {
-    width: 32,
-    height: 32,
-
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  taskDeleteText: {
-    color: theme.colors.gray300
+  taskDelete: {
+    paddingRight: 20,
   },
 });
